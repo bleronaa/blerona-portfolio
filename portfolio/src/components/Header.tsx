@@ -45,7 +45,7 @@ const Header = () => {
               <button
                 key={id}
                 onClick={() => scrollToSection(id)}
-                className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors duration-200 group"
+                className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors duration-200 group cursor-pointer"
               >
                 <Icon size={16} className="group-hover:scale-110 transition-transform duration-200" />
                 <span>{label}</span>

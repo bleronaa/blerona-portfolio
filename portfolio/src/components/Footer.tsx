@@ -16,7 +16,7 @@ const Footer = () => {
             className="group p-3 bg-gray-800 hover:bg-indigo-600 rounded-full transition-all duration-300 transform hover:scale-110 hover:shadow-lg hover:shadow-indigo-500/25"
             aria-label="Back to top"
           >
-            <ArrowUp size={20} className="text-gray-400 group-hover:text-white transition-colors duration-300" />
+            <ArrowUp size={20} className="text-gray-400 group-hover:text-white transition-colors duration-300 cursor-pointer" />
           </button>
 
           {/* Logo/Name */}
@@ -26,20 +26,20 @@ const Footer = () => {
 
           {/* Copyright */}
           <div className="flex items-center space-x-2 text-gray-400 text-sm">
-            <span>© 2024 Made with</span>
+            <span>© 2025 Made with</span>
             <Heart size={16} className="text-red-500 animate-pulse" />
             <span>by Blerona</span>
           </div>
 
           {/* Additional Links */}
-          <div className="flex space-x-6 text-sm">
+          {/* <div className="flex space-x-6 text-sm">
             <a href="#" className="text-gray-400 hover:text-indigo-400 transition-colors duration-200">
               Privacy Policy
             </a>
             <a href="#" className="text-gray-400 hover:text-indigo-400 transition-colors duration-200">
               Terms of Service
             </a>
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>

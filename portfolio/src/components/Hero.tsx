@@ -67,8 +67,8 @@ const Hero = () => {
           {/* Social Links */}
           <div className="flex justify-center space-x-6 mb-12">
             {[
-              { Icon: Github, href: '#', label: 'GitHub' },
-              { Icon: Linkedin, href: '#', label: 'LinkedIn' },
+              { Icon: Github, href: 'https://github.com/bleronaa', label: 'GitHub' },
+              { Icon: Linkedin, href: 'https://www.linkedin.com/in/blerona-tmava-b0b4b9250/', label: 'LinkedIn' },
               { Icon: Mail, href: '#contact', label: 'Email' }
             ].map(({ Icon, href, label }) => (
               <a
@@ -86,13 +86,13 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
             <button
               onClick={scrollToAbout}
-              className="px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-lg hover:from-indigo-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+              className="px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-lg hover:from-indigo-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl cursor-pointer"
             >
               Learn More About Me
             </button>
             <button
               onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-              className="px-8 py-4 border-2 border-indigo-500 text-indigo-400 font-semibold rounded-lg hover:bg-indigo-500/10 transition-all duration-300 transform hover:scale-105"
+              className="px-8 py-4 border-2 border-indigo-500 text-indigo-400 font-semibold rounded-lg hover:bg-indigo-500/10 transition-all duration-300 transform hover:scale-105 cursor-pointer"
             >
               View My Work
             </button>

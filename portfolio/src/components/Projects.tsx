@@ -11,6 +11,15 @@ const Projects = () => {
             github:'https://github.com/bleronaa/UniEvent',
             demo:'https://uni-event.vercel.app/',
             featured:true
+        },
+         {
+            title:'Cge Energy',
+            description:'Landing page abou Cge Energy company',
+            image:"/src/assets/cge.png",
+            technologies:['React', 'Next.js','Tailwind Css'],
+            github:'https://github.com/bleronaa/UniEvent',
+            demo:'https://cgenergy.net//',
+            featured:true
         }
     ];
       const featuredProjects = projects.filter(project => project.featured);

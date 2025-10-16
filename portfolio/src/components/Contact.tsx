@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, CheckCircle } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +11,7 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({
@@ -21,16 +23,45 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    setFormData({ name: '', email: '', subject: '', message: '' });
-    
-    // Reset success message after 3 seconds
-    setTimeout(() => setIsSubmitted(false), 3000);
+    setError('');
+
+    try {
+      // 1️⃣ Dërgo emailin e parë te ti (Contact Us template)
+      await emailjs.send(
+        'service_cwcfd5n',
+        'template_366esvk',
+        {
+          from_name: formData.name,      // përputhet me {{from_name}}
+          from_email: formData.email,    // përputhet me {{from_email}}
+          subject: formData.subject,     // përputhet me {{subject}}
+          message: formData.message,     // përputhet me {{message}}
+        },
+        'dR3nWS0ZDg1fz_n7S'
+      );
+
+
+      // 2️⃣ Dërgo auto-reply email te personi që e dërgon
+      await emailjs.send(
+  'service_cwcfd5n',
+  'template_vvxaqvd', // Auto-reply template
+  {
+    from_name: formData.name,
+    from_email: formData.email,
+  },
+  'dR3nWS0ZDg1fz_n7S'
+);
+
+
+      // ✅ Në fund: pastro formularin
+      setIsSubmitted(true);
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      setTimeout(() => setIsSubmitted(false), 3000);
+    } catch (err) {
+      console.error('Email send error:', err);
+      setError('Failed to send message. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
@@ -58,7 +89,6 @@ const Contact = () => {
     <section id="contact" className="py-20 bg-gray-800">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
-          {/* Section Header */}
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
               Get In Touch
@@ -73,11 +103,17 @@ const Contact = () => {
             {/* Contact Form */}
             <div className="bg-gray-900/50 rounded-xl p-8">
               <h3 className="text-2xl font-bold text-white mb-6">Send me a message</h3>
-              
+
               {isSubmitted && (
                 <div className="mb-6 p-4 bg-green-600/20 border border-green-500/30 rounded-lg flex items-center space-x-3">
                   <CheckCircle className="text-green-400" size={20} />
                   <span className="text-green-400">Message sent successfully!</span>
+                </div>
+              )}
+
+              {error && (
+                <div className="mb-6 p-4 bg-red-600/20 border border-red-500/30 rounded-lg flex items-center space-x-3">
+                  <span className="text-red-400">{error}</span>
                 </div>
               )}
 
@@ -160,14 +196,14 @@ const Contact = () => {
                   ) : (
                     <>
                       <Send size={20} />
-                      <span>Send Message</span>
+                      <span className='cursor-pointer'>Send Message</span>
                     </>
                   )}
                 </button>
               </form>
             </div>
 
-            {/* Contact Information */}
+            {/* Contact Info */}
             <div className="space-y-8">
               <div>
                 <h3 className="text-2xl font-bold text-white mb-6">Let's connect</h3>
@@ -200,7 +236,6 @@ const Contact = () => {
                 ))}
               </div>
 
-              {/* Availability Status */}
               <div className="p-6 bg-gradient-to-r from-green-600/20 to-blue-600/20 rounded-lg border border-green-500/30">
                 <div className="flex items-center space-x-3 mb-2">
                   <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
