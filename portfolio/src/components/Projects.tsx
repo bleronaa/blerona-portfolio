@@ -17,7 +17,7 @@ const Projects = () => {
             description:'Landing page abou Cge Energy company',
             image:"/src/assets/cge.png",
             technologies:['React', 'Next.js','Tailwind Css'],
-            github:'https://github.com/bleronaa/UniEvent',
+            github:'https://github.com/bleronaa/cge',
             demo:'https://cgenergy.net//',
             featured:true
         }
